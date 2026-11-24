@@ -1,11 +1,8 @@
 # ISA v0
 
-Source: Design Sketch v0, Appendix A (2026-11-16), companion to Proposal v5. This is
-a draft to review and break, not a frozen spec. Section 7 holds the milestone 1
-review: what the skeleton RTL and the PDK data changed or settled.
-
-Nothing in sections 1–6 has been assembled or simulated yet. The assembler and the
-cycle-accurate model come in milestone 2.
+Draft for review, not a frozen spec. Sections 1–6 have not been assembled or
+simulated yet; the assembler and cycle-accurate model come in milestone 2.
+Section 7 records what the skeleton RTL and the PDK data settled.
 
 ## 1. Timing model
 
@@ -183,10 +180,10 @@ latency is fixed.
 
 - `ihp-sg13cmos5l/libs.ref/sg13cmos5l_sram` is a symlink to
   `ihp-sg13g2/libs.ref/sg13g2_sram`. The CMOS5L macros are the SG13G2 macros, so
-  the sizes in Appendix B hold: 1024×16 is 236.80 × 336.46 µm and 256×16 is
+  the sizes in [design-sketch.md](design-sketch.md) hold: 1024×16 is 236.80 × 336.46 µm and 256×16 is
   236.80 × 118.78 µm.
 - The PDK now also has `RM_IHPSG13_1P_64x16_c2` (236.80 × 64.36 µm, no BIST).
-  Proposal v5 says there is no 64×16. That matters only for the fallback: a 64×16
+  It matters only for the fallback: a 64×16
   macro is 15,240 µm², about half a 256×16, and is an alternative to the latch
   store if 256 instructions per SM turn out to be far more than needed.
 - **Power on CMOS5L.** The tile's PDN is vertical Metal4 stripes only, and the

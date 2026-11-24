@@ -1,9 +1,8 @@
 # Inline Bitstream Transforms — Proposal
 
-Design proposal for the Jane Street Protocol Emulator ASIC Competition. This file is
-the reference version; it replaces Proposal v5 (Claude Doc, 2026-11-16). The ISA is in
-[isa-v0.md](isa-v0.md); the area budget and program sketches are in
-[design-sketch.md](design-sketch.md). The change log is at the end.
+Design proposal for the Jane Street Protocol Emulator ASIC Competition.
+Related: [ISA](isa-v0.md) · [area budget and program sketches](design-sketch.md) ·
+[schedule and status](milestones.md).
 
 > **Research question.** What is the *minimum* hardware a PIO-style programmable I/O
 > engine needs so that protocols requiring per-bit computation (CRC, bit stuffing,
@@ -166,17 +165,9 @@ AI-usage note; optional demo video.
 
 ## 9. Milestones
 
-Status per item is in [milestones.md](milestones.md).
-
-| When | Milestone | Exit check |
-| --- | --- | --- |
-| Nov 16–23 | Skeleton + 3 SRAM macros through TT flow, hardening in CI; ISA v0 review; E0-a | Precheck green |
-| Nov 24–30 | Assembler and model; E0-b; bit timer, transform unit, one SM in RTL; **E1 gate** | Level chosen |
-| Dec 1–14 | Full RTL; co-simulation; UART/SPI/I2C pass; formal | Full-chip harden at 60 MHz |
-| Dec 15–31 | CAN, LS USB, 10BASE-T TX; FPGA regression; FS USB experiment; E2 | Dev-set matrix green |
-| Jan 1–8 | RTL freeze (Jan 4); E3 blind test; gate-level sim | Blind result recorded |
-| Jan 9–17 | Final GDS, precheck, write-up, 2 days buffer | Repo complete |
-| Jan 18, 2027 | Submission | |
+Seven milestones from Nov 16 to submission on Jan 18, 2027, each with one exit
+check; the E1 decision falls on Nov 30 and RTL freezes on Jan 4. Schedule and
+status: [milestones.md](milestones.md).
 
 ## 10. Key risks
 
@@ -197,23 +188,9 @@ Status per item is in [milestones.md](milestones.md).
   Z8530-class prior art and the RP2040 DMA sniffer, back it with E1 and the blind
   test.
 
-## Change log
+## Revision history
 
-**2026-11-23 (repository version, after milestone 1).** Changes from Proposal v5:
-
-1. C1, C2, C6 rewritten from the E0-a source audit; new claim C9 (deadlines met by
-   pre-computation).
-2. Class C reframed: the binding resource is in-frame CPU throughput; RP2040 does FS
-   USB device in software at 120 MHz or more.
-3. Novelty claim 2 now says what software needs to match zero verdict latency; the
-   RP2040 DMA sniffer added to prior art.
-4. E1: L0/L1 may use E0-a's pre-computation tricks; SMs used is a metric.
-5. Die is 1.225 mm² (8×4 `DIE_AREA` 1724.16 × 710.64 µm), not 1.00 mm². All area
-   shares recomputed: design 27%, transform units 2.4%, third SM 7.7%, 32-bit
-   datapath 3.7%, CPU 1.7%.
-6. PDK facts: CMOS5L SRAM is the SG13G2 SRAM (symlink), sizes confirmed; a 64×16
-   macro exists; SRAM clock-to-output times added.
-7. Platform: macro placement rule and host pin order added.
-8. Milestone 1 runs to Nov 23; milestone 2 starts Nov 24.
-
-**2026-11-16 (v5).** See the v5 Claude Doc for changes from v4.
+| Date | Changes |
+| --- | --- |
+| 2026-11-23 | After milestone 1: C1, C2, C6 rewritten and C9 added from the E0-a audit; class C reframed around in-frame CPU throughput; E1 baselines may use pre-computation, with SMs used as a metric; die area corrected to 1.225 mm² and all area shares recomputed; 64×16 macro, SRAM timing, host pin order and macro placement rule added |
+| 2026-11-16 | v5: workload classes A/B/C, strongest L1 baseline, bit timer as core primitive, field-level sequencer, memory plan, host port |

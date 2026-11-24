@@ -1,7 +1,7 @@
-# Architecture (milestone 1 skeleton)
+# Architecture
 
-The full architecture is in Proposal v5 and the ISA in [isa-v0.md](isa-v0.md).
-This page describes what is in silicon-ready RTL today.
+What the RTL implements today (milestone 1). The target architecture is in
+[proposal.md](proposal.md) and the ISA in [isa-v0.md](isa-v0.md).
 
 ```
              ui[0..2]            +-------------------+
@@ -127,7 +127,7 @@ The three macros cover 135,928 µm², 11.1% of the 1.225 mm² die. Standard cell
 get everything above them (370 µm above the 1024×16 macro, 588 µm above the
 256×16 pair) and the right 944 µm of the die.
 
-## Verification in milestone 1
+## Verification status
 
 | Check | Where | Status |
 | --- | --- | --- |

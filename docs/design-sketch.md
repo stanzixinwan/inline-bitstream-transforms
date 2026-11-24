@@ -1,17 +1,15 @@
 # Design sketch: area budget and program sketches
 
-From Design Sketch v0 (2026-11-16), Appendices B and C; Appendix A became
-[isa-v0.md](isa-v0.md). Paper design only: nothing here has been assembled,
-simulated or synthesised. Milestone 1 changes: die area corrected to 1.225 mm²,
-macro sizes confirmed for CMOS5L.
+Paper design: nothing here has been assembled, simulated or synthesised. The
+instruction set is in [isa-v0.md](isa-v0.md).
 
-## B. Area budget
+## Area budget
 
 The configuration of [proposal.md](proposal.md) is estimated at 27% of the die:
 14% standard cells and 13% SRAM macros with halos. Area is not the binding
 constraint. These are flop-count estimates; first synthesis replaces them.
 
-### B.1 Inputs
+### Inputs
 
 | Input | Value | Source |
 | --- | --- | --- |
@@ -28,7 +26,7 @@ Assumptions: block area = flops × 48.99 µm² × 2.0 (logic equal to flop area;
 for the CPU). Clock tree, buffers and hold fixing add 20%. Each macro gets a
 10 µm halo. Placement density target 55% of the non-macro area.
 
-### B.2 Budget
+### Budget
 
 | Block | Flops | Area (µm²) | Share of die |
 | --- | --- | --- | --- |
@@ -54,7 +52,7 @@ for the CPU). Clock tree, buffers and hold fixing add 20%. Each macro gets a
 Cell area available at 55% density outside the macros is about 585,000 µm²; the
 design uses 29% of it.
 
-### B.3 What the options cost
+### What the options cost
 
 | Option | Extra area (µm², with overhead) | Share of die |
 | --- | --- | --- |
@@ -64,7 +62,7 @@ design uses 29% of it.
 | SM programs in two private 32×16 latch stores instead of two macros | 59,501 (replaces 71,278) | −1.0% |
 | Frame buffer as 512×16 instead of 1024×16 | 54,272 (replaces 91,539) | −3.0% |
 
-### B.4 What this means
+### What this means
 
 - **The transform unit is cheap.** At about 2.4% of the die, "is the hardware
   worth its area" has an easy answer. The harder question is whether it is worth
@@ -80,7 +78,7 @@ design uses 29% of it.
   (addressed in milestone 1, to be confirmed by LVS and IR drop in CI), routing
   around three macros, and the SM fetch path at 60 MHz.
 
-## C. Program sketches
+## Program sketches
 
 Three sketches in the ISA v0 instruction set. None has been assembled or simulated.
 They test the ISA on paper and give first instruction counts.
@@ -91,7 +89,7 @@ They test the ISA on paper and give first instruction counts.
 | LS USB device | 1 | 25 | Token match, CRC residual check, handshake choice | Pico-PIO-USB: 3 SMs, 32 instructions; RX NRZI and destuffing in PIO; TX coding and CRC on the CPU |
 | 10BASE-T TX | 1 | 16 | Copy loop from SRAM to FIFO | Pico-10BASE-T: 1 SM, 3 instructions; Manchester on the CPU, CRC-32 in the DMA sniffer |
 
-### C.1 CAN
+### CAN
 
 Configuration (both SMs). Bit timer: period 60, sample point 45 (75%), resync on
 falling edges, LIMIT with CLAMP, SJW 6. SM1 uses SM0's timer. Coder NRZ. Stuffing:
@@ -113,7 +111,7 @@ Not covered: extended identifiers, remote frames, overload frames, error-passive
 behaviour, the exact position of the error flag after a CRC error, and the rule
 that a transmitter resynchronises only on edges it did not cause.
 
-### C.2 LS USB device
+### LS USB device
 
 Configuration. Bit timer: period 40, sample point 20, hard sync on the first edge
 of SYNC, then LIMIT resync on every edge. Coder: NRZI (transition on 0), pin pair
@@ -153,7 +151,7 @@ CRC16 on every byte during the packet (one byte per 40 cycles, 20 instructions).
 Not covered: bus reset and suspend detection, the low-speed keep-alive EOP, and
 the minimum inter-packet delay before a handshake or data.
 
-### C.3 10BASE-T transmit
+### 10BASE-T transmit
 
 Configuration. Bit timer: period 3 (one half-bit), no resync. Coder: Manchester,
 IEEE polarity, pin pair TX+ and TX−. Stuffing off. LFSR: polynomial 0x04C11DB7,

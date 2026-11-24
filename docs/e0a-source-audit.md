@@ -1,6 +1,6 @@
 # E0-a: source audit of three RP2040 protocol implementations
 
-Proposal v5, experiment E0 (a): read Pico-PIO-USB, can2040 and one RP2040
+Experiment E0 (a) of the [proposal](proposal.md): read Pico-PIO-USB, can2040 and one RP2040
 10BASE-T TX project, and record what runs in PIO and what runs on the CPU, with
 instruction and state-machine counts. This audit checks claims C1, C2 and C6 of
 the proposal. Hardware measurement was optional and was not done.
@@ -47,7 +47,7 @@ CRC-32 is computed by the RP2040's DMA sniffer while the frame is copied, which 
 a side-attached hardware CRC unit, the L1 shape in E1. The CPU table is only the
 fallback. This is a useful data point for E1: in practice a word-level side
 accelerator already handles the 10BASE-T TX CRC, so class B is about host and
-memory bandwidth, as Proposal v5 already argues.
+memory bandwidth, as the proposal argues.
 
 ## What this means for E1 and the design
 
@@ -69,13 +69,13 @@ memory bandwidth, as Proposal v5 already argues.
    speed point.
 4. **Pico-PIO-USB already does full-speed device on RP2040.** Its device mode
    meets the FS turnaround with pre-armed handshakes and per-byte CRC16 on a
-   Cortex-M0+ clocked at a multiple of 12 MHz (typically 120 MHz or more). Proposal v5 calls FS USB the discriminating case; that
+   Cortex-M0+ clocked at a multiple of 12 MHz (typically 120 MHz or more). The proposal calls FS USB the discriminating case; that
    stays true for a 30-MIPS protocol CPU, but the write-up must say the
    discriminating resource is CPU throughput during the frame, not the
    handshake deadline itself.
 5. **10BASE-T TX host bandwidth.** The reference sends 4 bits of precomputed
    symbols per payload bit. With the inline coder and LFSR the host sends 1 bit
-   per payload bit and no FCS (Design Sketch C.3).
+   per payload bit and no FCS ([design-sketch.md](design-sketch.md#10base-t-transmit)).
 
 ## Not done
 
