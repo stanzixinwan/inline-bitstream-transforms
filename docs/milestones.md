@@ -4,8 +4,8 @@ From [proposal.md](proposal.md), section 9. Each milestone has one exit check.
 
 | When | Milestone | Exit check | Status |
 | --- | --- | --- | --- |
-| Nov 16–23 | Skeleton + 3 SRAM macros through TT flow, hardening in CI; ISA v0 review; E0-a | Precheck green | **in progress** (below) |
-| Nov 24–30 | Assembler and model; E0-b; bit timer, transform unit, one SM in RTL; **E1 gate** | Level chosen | not started |
+| Nov 16–23 | Skeleton + 3 SRAM macros through TT flow, hardening in CI; ISA v0 review; E0-a | Precheck green | **done** (2026-11-23) |
+| Nov 24–30 | Assembler and model; E0-b; bit timer, transform unit, one SM in RTL; **E1 gate** | Level chosen | next |
 | Dec 1–14 | Full RTL; co-simulation; UART/SPI/I2C pass; formal | Full-chip harden at 60 MHz | |
 | Dec 15–31 | CAN, LS USB, 10BASE-T TX; FPGA regression; FS USB experiment; E2 | Dev-set matrix green | |
 | Jan 1–8 | RTL freeze (Jan 4); E3 blind test; gate-level sim | Blind result recorded | |
@@ -19,11 +19,11 @@ From [proposal.md](proposal.md), section 9. Each milestone has one exit check.
 | Repository on the TT IHP template (8×4, SG13CMOS5L, `ttihp27a` actions) | `info.yaml`, `.github/workflows/` | done |
 | Skeleton RTL: host SPI port, word bus, CSRs, GPIO | `src/project.v`, `src/host_spi.v` | done |
 | 3 SRAM macros instantiated and placed (1024×16 + 2 × 256×16) | `src/project.v`, `src/config.json` | done |
-| Macro power on the Metal4-only PDN | `src/pdn_cfg.tcl`, `librelane_plugin_sram_pdn.py`, `odb_stripes.py` | done, verified by the first CI run |
+| Macro power on the Metal4-only PDN | `src/pdn_cfg.tcl`, `librelane_plugin_sram_pdn.py`, `odb_stripes.py` | done (hardened, precheck passed) |
 | RTL tests (7 cocotb tests) | `test/` | passing locally |
-| Hardening in CI | `gds` workflow | first run on the initial push |
-| Precheck | `gds` workflow, `precheck` job | first run on the initial push |
-| Gate-level test | `gds` workflow, `gl_test` job | first run on the initial push |
+| Hardening in CI | `gds` workflow | passing |
+| Precheck | `gds` workflow, `precheck` job | passing |
+| Gate-level test | `gds` workflow, `gl_test` job | passing (7 tests on the routed netlist) |
 | ISA v0 review | [isa-v0.md](isa-v0.md), section 7 | done (decisions in 7.1, PDK facts in 7.2, fetch timing in 7.3) |
 | E0-a source audit | [e0a-source-audit.md](e0a-source-audit.md) | done; C1 and C6 need rewording, C2 holds |
 

@@ -133,5 +133,5 @@ get everything above them (370 µm above the 1024×16 macro, 588 µm above the
 | --- | --- | --- |
 | RTL simulation, 7 cocotb tests (host protocol, CSRs, all three SRAMs, GPIO, IRQ) | `test/`, `test` workflow | passing locally (Icarus 12, cocotb 2.0.1) |
 | Verilator lint (`-Wall`) | local | clean |
-| Hardening, LVS, DRC, precheck | `gds` workflow | see [milestones.md](milestones.md) |
-| Gate-level simulation (same tests on the routed netlist with the IHP SRAM models) | `gds` workflow, `gl_test` job | see [milestones.md](milestones.md) |
+| Hardening, LVS, DRC, precheck | `gds` workflow | passing |
+| Gate-level simulation (same tests on the routed netlist with the IHP SRAM models) | `gds` workflow, `gl_test` job | passing |
