@@ -1,11 +1,11 @@
 # Milestones
 
-From Proposal v5, section 9. Each milestone has one exit check.
+From [proposal.md](proposal.md), section 9. Each milestone has one exit check.
 
 | When | Milestone | Exit check | Status |
 | --- | --- | --- | --- |
-| Nov 16–22 | Skeleton + 3 SRAM macros through TT flow, hardening in CI; ISA v0 review; E0-a | Precheck green | **in progress** (below) |
-| Nov 23–30 | Assembler and model; E0-b; bit timer, transform unit, one SM in RTL; **E1 gate** | Level chosen | not started |
+| Nov 16–23 | Skeleton + 3 SRAM macros through TT flow, hardening in CI; ISA v0 review; E0-a | Precheck green | **in progress** (below) |
+| Nov 24–30 | Assembler and model; E0-b; bit timer, transform unit, one SM in RTL; **E1 gate** | Level chosen | not started |
 | Dec 1–14 | Full RTL; co-simulation; UART/SPI/I2C pass; formal | Full-chip harden at 60 MHz | |
 | Dec 15–31 | CAN, LS USB, 10BASE-T TX; FPGA regression; FS USB experiment; E2 | Dev-set matrix green | |
 | Jan 1–8 | RTL freeze (Jan 4); E3 blind test; gate-level sim | Blind result recorded | |
@@ -27,7 +27,7 @@ From Proposal v5, section 9. Each milestone has one exit check.
 | ISA v0 review | [isa-v0.md](isa-v0.md), section 7 | done (decisions in 7.1, PDK facts in 7.2, fetch timing in 7.3) |
 | E0-a source audit | [e0a-source-audit.md](e0a-source-audit.md) | done; C1 and C6 need rewording, C2 holds |
 
-### Findings that change Proposal v5
+### Findings that changed Proposal v5 (applied in [proposal.md](proposal.md))
 
 1. **C1 and C6 need rewording** (see the E0-a audit). Pico-PIO-USB decodes NRZI and
    drops stuff bits in PIO on receive. Pico-10BASE-T computes CRC-32 in the RP2040

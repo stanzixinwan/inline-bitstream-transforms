@@ -25,6 +25,8 @@ what is done and what changed in the proposal.
 
 | Document | Contents |
 | --- | --- |
+| [docs/proposal.md](docs/proposal.md) | **The proposal (reference version)**: research question, design, experiments, milestones |
+| [docs/design-sketch.md](docs/design-sketch.md) | Area budget and CAN / LS USB / 10BASE-T TX program sketches |
 | [docs/architecture.md](docs/architecture.md) | Skeleton: pins, host protocol, address map, floorplan, SRAM power |
 | [docs/isa-v0.md](docs/isa-v0.md) | ISA v0 and the milestone 1 review |
 | [docs/e0a-source-audit.md](docs/e0a-source-audit.md) | E0-a: what Pico-PIO-USB, can2040 and Pico-10BASE-T do in PIO vs on the CPU |
